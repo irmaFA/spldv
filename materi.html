@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Sistem Persamaan Linear Dua Variabel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- MathJax Script untuk render matematika -->
+    <script type="text/javascript">
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Mengatur desain global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            justify-content: space-between; /* Agar footer selalu di bawah */
+        }
+
+        /* Navbar */
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar-nav .nav-item {
+            padding: 5px 15px;
+        }
+
+        /* Mengatur lebar konten utama */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Memberi jarak antar konten */
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #1757fa;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section konten utama */
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #111111;
+            border-bottom: 2px solid #a05c04e7;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2c1c07e7;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            text-align: justify;
+            color: #000000;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #000000;
+        }
+
+        /* Responsif untuk tampilan mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            p, li {
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            iframe {
+                min-height: 200px;
+            }
+        }
+
+        /* Responsif untuk iframe video */
+        iframe {
+            max-width: 100%;
+            height: auto;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        /* Navbar Responsif */
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar-nav .nav-item {
+            padding: 5px 15px;
+        }
+
+        /* Memperbaiki tampilan kontainer dalam berbagai ukuran layar */
+        .container-fluid {
+            padding: 0 20px;
+        }
+
+        /* Meningkatkan keselarasan pada tampilan konten */
+        .steps ol, .example p {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary w-100">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="spldv.html">HOME</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="materi.html">MATERI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="media.html">MEDIA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="latihan.html">LEMBAR KERJA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kuis.html">LATIHAN</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <body>
+        <div class="container">
+                <div class="left-column">
+                    <h2><strong>1. Persamaan Linear Dua Variabel</strong></h2>
+                      <ul>
+                      <p>
+                        Bentuk umum dari persamaan linier dua variabel dapat disusun sebagai berikut:
+                        </p>
+                        </ul>
+                        <ul>
+                        <li>Bentuk standar: <strong>\(Ax + By = C\)</strong></li>
+                        <li>Bentuk miring: <strong>\(y = mx + b\)</strong> (di mana <strong>\(m\)</strong> adalah gradien dan <strong>\(b\)</strong> adalah intersep)</li>
+                        </ul>   
+                    <h2><strong>2. Sistem Persamaan Linear Dua Variabel</strong></h2>   
+                    <ul>
+                        Perhatikan gambar berikut!
+                        <figure style="text-align: center;">
+                            <img src="gambar(i).png" alt="Persamaan Linear Dua Variabel"style="max-width: 100%; height: auto;">
+                            <figcaption>Gambar <i>\((i)\)</i> </figcaption>
+                        </figure>
+                        <p>
+                            Gambar di atas merupakan ilustrasi dari kegiatan jual beli di pasar. Tampak penjual buah sedang menawarkan dagangannya. Pedagang tersebut menjual dua jenis buah, yaitu buah semangka dan jeruk.</p>
+                        <p>
+                            Disini kita akan mengaitkan situasi pada gambar \((i)\) dengan unsur-unsur yang ada dalam persamaan linear dua variabel. Pada gambar \((i)\) harga masing-masing buah tiap \(kg\) dapat dimisalkan dengan suatu variabel. Seperti harga buah semangka per \(kg\) dimisalkan dengan \(x\), dan harga buah jeruk per \(kg\) dimisalkan \(y\).
+                        </p>
+                        <strong>Perhatikan ilustrasi berikut.</strong> 
+                        <p>Pada suatu hari, Bu Yumna sedang berbelanja buah-buahan di pasar. Bu Yumna membeli \(4kg\) semangka dan \(2kg\) jeruk seharga \(Rp. 80.000,00.\) Bu Yumna mengelompokkan masing-masing buah per \(kg\) dalam mangkuk yang berbeda, seperti pada gambar di bawah ini:
+                        </p>
+
+                        <figure style="text-align: center;">
+                            <img src="ilustrasi.jpg" alt="Persamaan Linear Dua Variabel" style="max-width: 70%; height: auto;">
+                            <figcaption>\(=80.000,00\)</figcaption>
+                        </figure>
+
+                        <hr style="border: 1px solid #4CAF50; width: 80%; margin: 20px auto;"> <!-- Garis berwarna hijau -->
+
+                        <p>Misalkan harga buah semangka per \(kg\) adalah \(x\), dan harga buah jeruk per \(kg\) adalah \(y\). Maka model matematika dari semua belanjaan ibu Yumna hari itu adalah \(4x + 2y = Rp. 80.000,00\)</p>
+
+                    </ul>  
+                </div>   
+          
+    <h2><strong>3. Penyelesaian Sistem Persamaan Linear Dua Variabel</strong></h2>
+        <div class="container">
+            <h2><strong>A. Metode Eliminasi</strong></h2>
+            <p>Metode eliminasi adalah metode menyelesaikan persamaan linear dengan cara menghilangkan salah satu variabel untuk mendapatkan nilai variabel lainnya.</p>
+                <p>
+                    Adapun langkah-langkah untuk menyelesaikan SPLDV dengan metode eliminasi adalah sebagai berikut.
+                </p>
+            <ol class="steps">
+                <li>Atur persamaan agar variabel yang akan dihilangkan memiliki koefisien yang sama.</li>
+                <li>Kalikan persamaan jika perlu untuk mencapai koefisien yang sama.</li>
+                <li>Jumlahkan atau kurangkan persamaan untuk menghilangkan salah satu variabel.</li>
+                <li>Selesaikan persamaan yang tersisa untuk mendapatkan nilai variabel lainnya.</li>
+            </ol>
+            <hr style="border: 1px solid #263fae; width: 100%; margin: 20px auto;"> 
+            <p>
+                <strong>Untuk memahami langkah pengerjaan metode eliminasi, perhatikan contoh berikut:</strong>
+            </p>
+            <p>
+                Jumlah umur Ari dan Reno 20 tahun. Dua kali umur Ari ditambah tiga kali umur Reno menjadi 54 tahun. Berapa umur mereka sekarang?
+            </p>
+    
+            <p><strong>Penyelesaian:</strong></p>
+            <p>Misalkan:</p>
+            <p><strong>umur Ari adalah \( x \)</strong></p>
+            <p><strong>Umur Reno adalah \( y \)</strong></p>
+            <p>Maka, sistem persamaan linear dua variabel dari permasalahan tersebut adalah:</p>
+            <div class="math">
+                \[
+                \begin{aligned}
+                x + y &= 20 \quad \text...{(i)} \\
+                2x + 3y &= 54 \quad \text...{(ii)}
+                \end{aligned}
+                \]
+            </div>
+            <p>(1) Eliminasi variabel \( x \) pada persamaan \( (i) \) dan \( (ii) \):</p>
+            <div class="math">
+                \[
+                \begin{aligned}
+                x + y &= 20 \quad \text{|x 2|} \\
+                2x + 3y &= 54 \quad \text{|x 1|} \\
+                \hline
+                2x + 2y &= 40 \\
+                2x + 3y &= 54 \\
+                \hline
+                -y &= -14 \\
+                y &= 14
+                \end{aligned}
+                \]
+            </div>
+            <p>(2) Eliminasi variabel \( y \) pada persamaan \( (i) \) dan \( (ii) \):</p>
+            <div class="math">
+                \[
+                \begin{aligned}
+                x + y &= 20 \quad \text{|x 3|} \\
+                2x + 3y &= 54 \quad \text{|x 1|} \\
+                \hline
+                3x + 3y &= 60 \\
+                2x + 3y &= 54 \\
+                \hline
+                x &= 6
+                \end{aligned}
+                \]
+            </div>
+            <p>
+                (3) Menentukan penyelesaian dari masing-masing variabel yang telah ditemukan:
+            </p>
+            <p>
+                <ol>Maka, umur Ari adalah \( x = 6 \) tahun dan umur Reno adalah \( y = 14 \) tahun.</ol>
+            </p>
+        </div>
+        <div class="container">
+            <h2><strong>B. Metode Substitusi</strong></h2>
+                <p>
+                    <strong> Metode substitusi adalah cara untuk menyelesaikan sistem persamaan linear dua variabel dengan mengisolasi salah satu variabel dan kemudian menggantikan nilai tersebut ke persamaan lainnya.                </strong>
+                </p>
+                <p>Langkah-langkah Metode Substitusi:</p>
+            <ol class="steps">
+                    <li>Pilih salah satu persamaan dan isolasi salah satu variabel.</li>
+                    <li>Substitusikan nilai variabel yang telah diisolasi ke dalam persamaan lainnya.</li>
+                    <li>Selesaikan persamaan yang tersisa untuk mendapatkan nilai variabel lainnya.</li>
+                    <li>Substitusikan kembali nilai yang ditemukan ke dalam salah satu persamaan untuk mendapatkan nilai variabel yang pertama.</li>
+                </ol>
+                <hr style="border: 1px solid #4ca7af; width: 100%; margin: 20px auto;"> <!-- Garis berwarna hijau -->
+            <p>
+                <strong>Untuk memahami langkah pengerjaan metode substitusi, perhatikan contoh berikut:</strong>
+            </p>
+            <p>
+                Jumlah umur Ari dan Reno 20 tahun. Dua kali umur Ari ditambah tiga kali umur Reno menjadi 54 tahun. Berapa umur mereka sekarang?
+            </p>
+            <p><strong>Penyelesaian:</strong></p>
+            <p>Misalkan:</p>
+            <p><strong>umur Ari adalah \( x \)</strong></p>
+            <p><strong>Umur Reno adalah \( y \)</strong></p>
+            <p>Maka, sistem persamaan linear dua variabel dari permasalahan tersebut adalah:</p>
+            <div class="math">
+                \[
+                \begin{aligned}
+                x + y &= 20 \quad \text...{(i)} \\
+                2x + 3y &= 54 \quad \text...{(ii)}
+                \end{aligned}
+                \]
+            </div>
+            <p>(1) Nyatakan variabel \( y \) dalam bentuk variabel \( x \) pada persamaan \( (i) \):</p>
+            <div class="math">
+                \[
+                \begin{aligned}
+                x + y &= 20 \\
+                y &= 20 - x \quad \text...{(iii)} \\
+                \end{aligned}
+                \]
+            </div>
+            <p>(2) Substitusi persamaan \((iii)\) ke dalam persamaan \((ii)\):</p>
+            <div class="math">
+                \[
+                \begin{aligned}
+                2x + 3y &= 54 \\
+                2x + 3(20 - x) &= 54 \\
+                2x + 60 - 3x &= 54 \\
+                2x - 3x &= 54 - 60 \\
+                -x &= -6 \\
+                x &= 6 \\
+                \end{aligned}
+                \]
+            </div>
+            <p>Substitusi \(x = 6\) ke dalam persamaan \((iii)\)</p>
+            <div class="math">
+                \[
+                \begin{aligned}
+                y &= 20 - x \\
+                y &= 20 - 6 \\
+                y &= 14
+                \end{aligned}
+                \]
+            <p>
+                (3) Menentukan penyelesaian dari masing-masing variabel yang telah ditemukan:
+            </p>
+            <p>
+                Maka, umur Ari adalah \( x = 6 \) tahun dan umur Reno adalah \( y = 14 \) tahun.
+            </p>
+        </div>
+        <div class="container">
+            <h2><strong>C. Metode Campuran</strong></h2>
+                <p>
+                    <strong>Metode campuran dalam menyelesaikan SPLDV melibatkan penggunaan dua metode, yaitu substitusi dan eliminasi.</strong>
+                </p>
+                <p>Langkah-langkah Metode Substitusi:</p>
+            <ol class="steps">
+                <li>Pilih metode eliminasi untuk menghilangkan salah satu variabel</li>
+                <li>Gunakan metode substitusi untuk menemukan nilai variabel lainnya</li>
+                <li>Selesaikan persamaan hasil substitusi</li>
+                <li>Periksa kembali hasil yang diperoleh</li>
+            </ol>
+            <hr style="border: 1px solid #4ca7af; width: 100%; margin: 20px auto;"> <!-- Garis berwarna hijau -->
+            <p>
+                <strong>Untuk memahami langkah pengerjaan metode campuran, perhatikan contoh berikut:</strong>
+            </p>
+            <p>
+                Jumlah umur Ari dan Reno 20 tahun. Dua kali umur Ari ditambah tiga kali umur Reno menjadi 54 tahun. Berapa umur mereka sekarang?
+            </p>
+            <p><strong>Penyelesaian:</strong></p>
+            <p>Misalkan:</p>
+            <p><strong>umur Ari adalah \( x \)</strong></p>
+            <p><strong>Umur Reno adalah \( y \)</strong></p>
+            <p>Maka, sistem persamaan linear dua variabel dari permasalahan tersebut adalah:</p>
+            <div class="math">
+                \[
+                \begin{aligned}
+                x + y &= 20 \quad \text...{(i)} \\
+                2x + 3y &= 54 \quad \text...{(ii)}
+                \end{aligned}
+                \]
+            </div>
+            <h3>Metode Campuran</h3>
+            <p>(1) Eliminasi variabel \( x \) pada persamaan \( (i) \) dan \( (ii) \):</p>
+            <div class="math">
+                \[
+                \begin{aligned}
+                x + y &= 20 \quad \text{|x 2|} \\
+                2x + 3y &= 54 \quad \text{|x 1|} \\
+                \hline
+                2x + 2y &= 40 \\
+                2x + 3y &= 54 \\
+                \hline
+                -y &= -14 \\
+                y &= 14
+                \end{aligned}
+                \]
+            </div>
+            <p>(2) Substitusi \( y = 14 \) pada persamaan \( (i) \):</p>
+            <div class="math">
+                \[
+                \begin{aligned}
+                x + y = 20 \\
+                x + 14 &= 20 \\
+                x &= 20 - 14 \\
+                x &= 6 \\
+                \end{aligned}
+                \]
+            </div>
+            <p>
+                (3) Menentukan penyelesaian dari masing-masing variabel yang telah ditemukan:
+            </p>
+            <p>
+                Maka, umur Ari adalah \( x = 6 \) tahun dan umur Reno adalah \( y = 14 \) tahun.
+            </p>
+        </div>
+        
+        <div class="container">
+                <h2><strong>D. Metode Grafik</strong></h2>
+                <p>
+                    Metode grafik adalah salah satu cara menyelesaikan sistem persamaan linear dua variabel dengan cara menggambar grafik dari setiap persamaan. Titik potong antara kedua garis yang dihasilkan adalah solusi dari metode tersebut.
+                </p>
+                <p>Langkah-langkah Metode Grafik:</p>
+            <ol class="steps">
+                    <li>Tentukan titik potong salah satu persamaan linear dengan sumbu \(x\) atau sumbu \(y\)</li>
+                    <li>Hubungkan kedua titik potong dengan garis lurus</li>
+                    <li>Lakukan langkah 1 dan 2 untuk persamaan lain pada SPLDV</li>
+                    <li>Jika kedua titik berpotongan di \((x,y)\) = \((x1, y1)\), penyelesaian SPLD adalah \(x=x1\) dan \(y=y1\)</li>
+                    <li>Jika kedua titik tidak berpotongan, SPLDV tidak memiliki penyelesaian </li>
+                </ol>
+                <p>
+                    <strong>Untuk memahami langkah pengerjaan metode grafik, perhatikan contoh berikut:</strong>
+                </p>
+                <p>
+                    Jumlah umur Ari dan Reno 20 tahun. Dua kali umur Ari ditambah tiga kali umur Reno menjadi 54 tahun.
+                    Berapa umur mereka sekarang?
+                </p>
+    
+                <p><strong>Penyelesaian:</strong></p>
+                <p>Misalkan:</p>
+                <p><strong>umur Ari adalah \( x \)</strong></p>
+                <p><strong>Umur Reno adalah \( y \)</strong></p>
+                <p>Maka, sistem persamaan linear dua variabel dari permasalahan tersebut adalah:</p>
+                <ul>
+                    <li>$x + y = 20$ … \((i)\)</li>
+                    <li>$2x + 3y = 54$ … \((ii)\)</li>
+                </ul>
+    
+                <ol>
+                    <li>
+                        <strong>Menentukan titik potong</strong>
+                        <table class="table table-bordered" style="width: 50%; font-size: 14px; margin: 10px auto; text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">\(x\)</th>
+                                    <th style="text-align: center;">\(y\)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center; vertical-align: middle;">0</td>
+                                    <td style="text-align: center; vertical-align: middle;">20</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; vertical-align: middle;">20</td>
+                                    <td style="text-align: center; vertical-align: middle;">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                    <li>
+                        <strong>Menentukan titik potong</strong>
+                        <table class="table table-bordered" style="width: 50%; font-size: 14px; margin: 10px auto; text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">\(x\)</th>
+                                    <th style="text-align: center;">\(y\)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center; vertical-align: middle;">0</td>
+                                    <td style="text-align: center; vertical-align: middle;">18</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; vertical-align: middle;">27</td>
+                                    <td style="text-align: center; vertical-align: middle;">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </ol>                       
+    
+    
+                <h2>Gambar Grafik</h2>
+                <img src="grafik.png" alt="Persamaan Linear Dua Variabel"style="max-width: 100%; height: auto;">
+                <hr style="border: 1px solid #4ca7af; width: 100%; margin: 20px auto;"> <!-- Garis berwarna hijau -->
+                <p>
+                    Grafik menunjukkan titik potong di $(x, y) = (6, 14)$ sehingga umur Ari adalah 6 tahun dan umur Reno adalah 14 tahun.
+                </p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        
+</body>
+</html>
